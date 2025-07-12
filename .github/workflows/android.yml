@@ -26,6 +26,7 @@ jobs:
 
     - name: Build APK
       run: |
+        buildozer init
         buildozer -v android debug
         mv bin/*.apk .
 
@@ -34,3 +35,15 @@ jobs:
       with:
         name: SpriteProcessor
         path: *.apk
+
+    - name: Run on Emulator
+      run: |
+        echo "Installing emulator..."
+        sudo apt-get install -y qemu-kvm android-emulator
+        echo "Starting emulator..."
+        emulator -avd test_avd -no-audio -no-window &
+        adb wait-for-device
+        echo "Installing APK..."
+        adb install *.apk
+        echo "Launching app..."
+        adb shell am start -n org.noctrox.spriteprocessor/org.kivy.android.PythonActivity
