@@ -27,8 +27,8 @@ jobs:
     - name: Build APK
       run: |
         echo "Creating buildozer.spec..."
-        cat > buildozer.spec <<EOL
-        
+        cat > buildozer.spec 
+       <<EOL
        [app]
        title = Sprite Processor
        package.name = spriteprocessor
