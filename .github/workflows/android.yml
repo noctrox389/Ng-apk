@@ -24,7 +24,6 @@ jobs:
         pip install buildozer
         sudo apt-get update
         sudo apt-get install -y zip unzip autoconf automake libtool pkg-config zlib1g-dev
-
     - name: Build APK
       run: |
         echo "Creating buildozer.spec..."
